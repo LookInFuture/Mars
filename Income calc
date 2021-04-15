@@ -1,0 +1,36 @@
+total_deposit = int(input('Введите ваш депозит: '))
+tot_rased_dep = 0
+monthly_raise_course = 5  # увеличение стоимость марс на 5% каждый месяц
+current_course = 1.5  # текущий курс Марс
+rased_course = 0
+avg_income = 0  # средний процент в зависимости от стейка. 1 стейк - 8% и 2 стейк — 9% в месяц
+stake = 0
+rur_course = 75
+
+while stake != 1 or stake != 2:
+    stake = int(input('Введите номер стейка. 1 — стандратрный, 2 — долгосрок: '))
+    if stake == 1 or stake == 2:
+        break
+
+if stake == 1:
+    avg_income = 8
+else:
+    avg_income = 9
+
+months_staked = int(input('Введите количество месяцев, на которые вы планируете реинвестировать Марс: '))
+
+# Цикл, который расчитывает сколько человек будет получать каждый месяц и потенциальную доходность в Марс,
+# в USD и в рублях. 
+
+for i in range(1, months_staked + 1):
+    rased_course = current_course * monthly_raise_course / 100
+    current_course += rased_course
+    rased_deposit = total_deposit * avg_income / 100
+    tot_rased_dep += rased_deposit
+    if tot_rased_dep > 100:
+        total_deposit += tot_rased_dep
+        tot_rased_dep = 0
+        rased_deposit = 0
+    print(i, 'месяц:', '\nОбъём в Марс:', round(total_deposit), '\tДоходность в USD:',
+          round(total_deposit * current_course),
+          '\tДоходность в рублях:', round(total_deposit * current_course * rur_course))
