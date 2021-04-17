@@ -31,6 +31,8 @@ for i in range(1, months_staked + 1):
         total_deposit += tot_rased_dep
         tot_rased_dep = 0
         rased_deposit = 0
+    print('Текущий курс $MARS =', current_course)
     print(i, 'месяц:', '\nОбъём в Марс:', round(total_deposit), '\tДоходность в USD:',
           round(total_deposit * current_course),
           '\tДоходность в рублях:', round(total_deposit * current_course * rur_course))
+    print()
